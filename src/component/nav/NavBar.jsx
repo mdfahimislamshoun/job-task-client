@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom";
 
 
 const NavBar = () => {
   return (
-    <div>
+    <div className=" max-w-[1900px] justify-center mx-auto">
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
@@ -25,7 +26,7 @@ const NavBar = () => {
             <div className="flex-none hidden md:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
-                <li><a>Home</a></li>
+                <li><NavLink to="/">Home</NavLink></li>
                 <li><a>About us</a></li>
                 <li><a>Log Out</a></li>
                 <li>
@@ -41,11 +42,11 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        <div className="drawer-side">
-          <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200">
+        <div className="drawer-side z-10">
+          <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay "></label>
+          <ul className="menu p-4 w-48 min-h-full  bg-base-200">
             {/* Sidebar content here */}
-            <li><a>Sidebar Item 1</a></li>
+            <li><NavLink to="/">Home</NavLink></li>
             <li><a>Sidebar Item 2</a></li>
           </ul>
         </div>
