@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import { useContext } from "react";
@@ -11,11 +11,9 @@ import Swal from "sweetalert2";
 const SignIn = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const location = useLocation();
     const {userSignIn,signInWithGoogle}=useContext(AuthContext)
 
     const handleSignIn = (e) => {
-        
         const email = e.email;
         const password = e.password;
         console.log(email, password);
@@ -81,7 +79,7 @@ const SignIn = () => {
         userSignIn(email, password)
             .then((result) => {
                 console.log(result.data)
-                navigate(location?.state ? location.state : "/");
+                navigate( "/dashboard");
 
             })
             .catch((error) => {
@@ -97,11 +95,12 @@ const SignIn = () => {
                 }
             });
     };
+    
     const handelWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
                 console.log(result.user);
-                navigate(location?.state ? location.state : "/");
+                navigate("/dashboard");
             })
             .catch((error) => {
                 console.error(error);

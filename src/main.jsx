@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SignIn from './component/login&out/SignIn.jsx'
 import SignUp from './component/login&out/SignUp.jsx'
 import Home from './component/home/Home.jsx'
+import Dashboard from './component/userDas/Dashboard.jsx'
 
 const queryClint = new QueryClient()
 const router = createBrowserRouter([
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
         element:<Home></Home>
       },
       {
-        
+        path:"/dashboard",
+        element:<Dashboard></Dashboard>
       },
       {
         path:"/signin",
