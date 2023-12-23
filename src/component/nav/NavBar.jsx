@@ -38,6 +38,7 @@ const NavBar = () => {
                 <li><NavLink to="/about">About us</NavLink></li>
                 {user?<li><NavLink to="/dashboard">Dashbord</NavLink></li>:""}
                 {user?<li><NavLink to="/addTask">Add task</NavLink></li>:""}
+                {user?<li><NavLink to="/previous">Previous task</NavLink></li>:""}
                 {user?<li><button onClick={handelLogOut}>Log Out</button></li>:""}
                 <li>
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -56,8 +57,12 @@ const NavBar = () => {
           <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay "></label>
           <ul className="menu p-4 w-48 min-h-full  bg-base-200">
             {/* Sidebar content here */}
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><a>Sidebar Item 2</a></li>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/about">About us</NavLink></li>
+                {user?<li><NavLink to="/dashboard">Dashbord</NavLink></li>:""}
+                {user?<li><NavLink to="/addTask">Add task</NavLink></li>:""}
+                {user?<li><NavLink to="/previous">Previous task</NavLink></li>:""}
+                {user?<li><button onClick={handelLogOut}>Log Out</button></li>:""}
           </ul>
         </div>
       </div>

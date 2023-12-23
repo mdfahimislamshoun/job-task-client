@@ -16,6 +16,7 @@ import AddTask from './component/userDas/AddTask.jsx'
 import Private from './component/provider/Privet.jsx'
 import UpdateTask from './component/userDas/UpdateTask.jsx'
 import UseAxios from './component/hooks/UseAxios.js'
+import PreviousTasks from './component/userDas/PreviousTasks.jsx'
 
 const axiosurl = UseAxios()
 const queryClint = new QueryClient()
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         path:"/updateTask/:id",
         element:<Private><UpdateTask></UpdateTask></Private>,
         loader: ({ params }) => axiosurl.get(`/task/${params.id}`)
+      },
+      {
+        path:"/previous",
+        element:<Private><PreviousTasks></PreviousTasks></Private>,
+        
       },
       {
         path:"/signin",
