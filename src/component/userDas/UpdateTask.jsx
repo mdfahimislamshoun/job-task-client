@@ -11,9 +11,9 @@ const UpdateTask = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [priority, setPriority] = useState("");
     const axiosurl = UseAxios();
-    const task =useLoaderData([]);
+    const task = useLoaderData([]);
 
-const {_id,title,descriptions,status}=task.data;
+    const { _id, title, descriptions, status } = task.data;
 
     const handelAddTask = (e) => {
         const title = e.title;
@@ -21,12 +21,12 @@ const {_id,title,descriptions,status}=task.data;
         const deadlines = startDate;
         const priorityType = priority;
         const newStatus = status;
-        const taskData = { title, descriptions, deadlines, priorityType,newStatus };
+        const taskData = { title, descriptions, deadlines, priorityType, newStatus };
         console.log(taskData);
         axiosurl.put(`/task/${_id}`, taskData)
             .then((response) => {
                 console.log(response.data);
-                if (response.data.modifiedCount>0) {
+                if (response.data.modifiedCount > 0) {
                     return Swal.fire(
                         "Good job!",
                         "task updated successfully!",
@@ -37,58 +37,58 @@ const {_id,title,descriptions,status}=task.data;
     }
     return (
         <div>
-             <div className="max-w-[1900px] justify-center mx-auto">
+            <div className="max-w-[1900px] justify-center mx-auto">
 
-<form onSubmit={handleSubmit(handelAddTask)} className="p-4">
-    <div className="form-control">
-        <label className="label">
-            <span className="label-text">title</span>
-        </label>
-        <input
-            type="text"
-            {...register("title")}
-            placeholder="title"
-            defaultValue={title}
-            className="input input-bordered"
-            required
-        />
-    </div>
-    <div className="form-control">
-        <label className="label">
-            <span className="label-text">Descriptions</span>
-        </label>
-        <input
-            type="text"
-            {...register("descriptions")}
-            placeholder="Descriptions"
-            defaultValue={descriptions}
-            className="input input-bordered"
-            required
-        />
-    </div>
-    <div className="form-control">
-        <label className="label">
-            <span className="label-text">Deadlines</span>
-        </label>
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-    </div>
-    <div className="mt-3">
-        <select value={priority} onChange={e => setPriority(e.target.value)} className="select w-full max-w-xs">
-            <option disabled selected>Pick your priority type</option>
-            <option>low</option>
-            <option>moderate</option>
-            <option>high</option>
+                <form onSubmit={handleSubmit(handelAddTask)} className="p-4">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">title</span>
+                        </label>
+                        <input
+                            type="text"
+                            {...register("title")}
+                            placeholder="title"
+                            defaultValue={title}
+                            className="input input-bordered"
+                            required
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Descriptions</span>
+                        </label>
+                        <input
+                            type="text"
+                            {...register("descriptions")}
+                            placeholder="Descriptions"
+                            defaultValue={descriptions}
+                            className="input input-bordered"
+                            required
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Deadlines</span>
+                        </label>
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
+                    <div className="mt-3">
+                        <select value={priority} onChange={e => setPriority(e.target.value)} className="select w-full max-w-xs">
+                            <option disabled selected>Pick your priority type</option>
+                            <option>low</option>
+                            <option>moderate</option>
+                            <option>high</option>
 
-        </select>
-    </div>
+                        </select>
+                    </div>
 
-    <div className="form-control mt-6">
-        <button type="submit" className="btn btn-primary">
-            Submit
-        </button>
-    </div>
-</form>
-</div>
+                    <div className="form-control mt-6">
+                        <button type="submit" className="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
