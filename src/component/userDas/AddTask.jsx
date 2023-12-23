@@ -17,23 +17,24 @@ const AddTask = () => {
         const descriptions = e.descriptions;
         const deadlines = startDate;
         const priorityType = priority;
-        const status="toDo";
-        const taskData = { title, descriptions, deadlines, priorityType,status };
+        const status = "todo";
+        const taskData = { title, descriptions, deadlines, priorityType, status };
         console.log(taskData);
         axiosurl.post("/task", taskData)
-        .then((response) => {
-            if (response.data.insertedId) {
-                return Swal.fire(
-                    "Good job!",
-                    "task added successfully!",
-                    "success"
-                );
-            }
-        })
+            .then((response) => {
+                if (response.data.insertedId) {
+                    return Swal.fire(
+                        "Good job!",
+                        "task added successfully!",
+                        "success"
+                    );
+                }
+            })
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit(handelAddTask)}>
+        <div className="max-w-[1900px] justify-center mx-auto">
+
+            <form onSubmit={handleSubmit(handelAddTask)} className="p-4">
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">title</span>
@@ -65,13 +66,13 @@ const AddTask = () => {
                     <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                 </div>
                 <div className="mt-3">
-                <select value={priority} onChange={e => setPriority(e.target.value)} className="select w-full max-w-xs">
-                    <option disabled selected>Pick your priority type</option>
-                    <option>low</option>
-                    <option>moderate</option>
-                    <option>high</option>
+                    <select value={priority} onChange={e => setPriority(e.target.value)} className="select w-full max-w-xs">
+                        <option disabled selected>Pick your priority type</option>
+                        <option>low</option>
+                        <option>moderate</option>
+                        <option>high</option>
 
-                </select>
+                    </select>
                 </div>
 
                 <div className="form-control mt-6">
@@ -81,6 +82,7 @@ const AddTask = () => {
                 </div>
             </form>
         </div>
+
     );
 };
 

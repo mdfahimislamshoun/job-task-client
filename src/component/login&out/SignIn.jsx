@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 
 const SignIn = () => {
+
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const {userSignIn,signInWithGoogle}=useContext(AuthContext)
@@ -79,23 +80,31 @@ const SignIn = () => {
         userSignIn(email, password)
             .then((result) => {
                 console.log(result.data)
-                navigate( "/dashboard");
+                navigate("/dashboard");
 
             })
             .catch((error) => {
                 console.error(error);
-                if (error) {
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
                     return Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'wrong email or password',
+                        title: 'Incorrect email or password',
                         showConfirmButton: false,
                         timer: 1500
-                    })
+                    });
+                } else {
+                    return Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'An error occurred. Please try again later.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
     };
-    
+
     const handelWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
